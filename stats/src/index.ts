@@ -1,4 +1,5 @@
-import { CSVFileReader } from "./CSVFileReader";
+import { MatchResult } from "./MatchResult";
+import { MatchReader } from "./MatchReader";
 
 // const matches = fs
 //   .readFileSync("football.csv", { encoding: "utf-8" })
@@ -6,15 +7,11 @@ import { CSVFileReader } from "./CSVFileReader";
 //   .map((row: string): string[] => row.split(","));
 const fileName = "football.csv";
 
-const csvReader = new CSVFileReader(fileName);
+const csvReader = new MatchReader(fileName);
 csvReader.read();
 const matches = csvReader.data;
 
-enum MatchResult {
-  homeWin = "H",
-  awayWin = "A",
-  draw = "D",
-}
+console.log(matches) 
 
 let manUnitedWins = 0;
 
