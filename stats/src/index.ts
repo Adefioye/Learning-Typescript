@@ -12,13 +12,22 @@ import { AnalyticSummary } from "./AnalyticSummary";
 const fileName = "football.csv";
 const teamName = "Man United";
 
-const csvReader = new CSVFileReader(fileName);
-const matchReader = new MatchReader(csvReader);
-matchReader.load();
-const matches = matchReader.matches;
-const analyticSummary = new AnalyticSummary(
-  new WinsAnalysis(teamName),
-  new ConsoleReport()
-);
+// Using static methods to make simple the running of the analysis
+
+const matchReader = MatchReader.fromCSVToMatchData(fileName) // static method
+matchReader.load()
+const matches = matchReader.matches 
+
+const analyticSummary = AnalyticSummary.WinAnalysisWithHTMLReport(teamName, "winAnalysisReport.html")
 analyticSummary.buildAndPrintResult(matches)
+
+// const csvReader = new CSVFileReader(fileName);
+// const matchReader = new MatchReader(csvReader);
+// matchReader.load();
+// const matches = matchReader.matches;
+// const analyticSummary = new AnalyticSummary(
+//   new WinsAnalysis(teamName),
+//   new ConsoleReport()
+// );
+// analyticSummary.buildAndPrintResult(matches)
 
